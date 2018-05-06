@@ -74,13 +74,14 @@
                     <navigationItem key="navigationItem" id="qHG-8r-YJT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pe5-Dm-Anc">
                             <connections>
-                                <segue destination="UKQ-Jd-s5Y" kind="show" id="bCO-fb-827"/>
+                                <action selector="addTodo:" destination="BYZ-38-t0r" id="Qd9-fR-Ic8"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="qr2-ph-FAx" id="awm-se-JSc"/>
                         <outlet property="tableView" destination="IJG-UY-VZM" id="Txg-L6-475"/>
+                        <segue destination="UKQ-Jd-s5Y" kind="show" identifier="taskForm" id="cVq-5i-a04"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -110,12 +111,29 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGl-M0-u60">
                                 <rect key="frame" x="16" y="598" width="343" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Add">
+                                <state key="normal" title="Save">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="addTaskAction:" destination="UKQ-Jd-s5Y" eventType="touchUpInside" id="egt-h5-4XN"/>
                                 </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="UVm-rq-8ew">
+                                <rect key="frame" x="90" y="254" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="완료" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECz-Qk-HB3">
+                                <rect key="frame" x="32" y="259" width="30" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b86-aa-vzu">
+                                <rect key="frame" x="16" y="560" width="343" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,17 +142,22 @@
                             <constraint firstItem="KrM-5I-moU" firstAttribute="top" secondItem="UYa-uA-qFd" secondAttribute="bottom" constant="8" id="A55-Nf-cuN"/>
                             <constraint firstItem="UYa-uA-qFd" firstAttribute="top" secondItem="RBm-Lm-9sb" secondAttribute="top" constant="16" id="LtL-FW-e6v"/>
                             <constraint firstItem="JGl-M0-u60" firstAttribute="leading" secondItem="RBm-Lm-9sb" secondAttribute="leading" constant="16" id="Mlp-CM-864"/>
+                            <constraint firstItem="JGl-M0-u60" firstAttribute="top" secondItem="b86-aa-vzu" secondAttribute="bottom" constant="8" id="SWU-WL-XwQ"/>
                             <constraint firstItem="UYa-uA-qFd" firstAttribute="leading" secondItem="RBm-Lm-9sb" secondAttribute="leading" constant="16" id="ZFF-rX-tnS"/>
                             <constraint firstItem="RBm-Lm-9sb" firstAttribute="trailing" secondItem="JGl-M0-u60" secondAttribute="trailing" constant="16" id="dOR-0Q-UJE"/>
                             <constraint firstItem="JGl-M0-u60" firstAttribute="top" secondItem="KrM-5I-moU" secondAttribute="bottom" constant="352" id="dlQ-lc-k0Q"/>
                             <constraint firstItem="RBm-Lm-9sb" firstAttribute="trailing" secondItem="KrM-5I-moU" secondAttribute="trailing" constant="16" id="grR-5P-jGX"/>
                             <constraint firstItem="KrM-5I-moU" firstAttribute="top" secondItem="UYa-uA-qFd" secondAttribute="bottom" constant="8" id="nXU-x5-KY0"/>
+                            <constraint firstItem="RBm-Lm-9sb" firstAttribute="trailing" secondItem="b86-aa-vzu" secondAttribute="trailing" constant="16" id="oGN-dr-gsU"/>
                             <constraint firstItem="RBm-Lm-9sb" firstAttribute="trailing" secondItem="UYa-uA-qFd" secondAttribute="trailing" constant="16" id="qi8-SZ-epH"/>
                             <constraint firstItem="RBm-Lm-9sb" firstAttribute="bottom" secondItem="JGl-M0-u60" secondAttribute="bottom" constant="39" id="twH-Np-8Tr"/>
+                            <constraint firstItem="b86-aa-vzu" firstAttribute="top" secondItem="UVm-rq-8ew" secondAttribute="bottom" constant="275" id="uQY-bk-eLc"/>
+                            <constraint firstItem="b86-aa-vzu" firstAttribute="leading" secondItem="RBm-Lm-9sb" secondAttribute="leading" constant="16" id="zgC-5Y-GFi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RBm-Lm-9sb"/>
                     </view>
                     <connections>
+                        <outlet property="taskCompleted" destination="UVm-rq-8ew" id="hNb-dX-3r9"/>
                         <outlet property="taskDescription" destination="KrM-5I-moU" id="ogd-Sd-HKG"/>
                         <outlet property="taskTitle" destination="UYa-uA-qFd" id="9o5-Rz-WAa"/>
                     </connections>

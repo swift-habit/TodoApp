@@ -10,11 +10,19 @@ import UIKit
 import Parse
 class TodoListController: UIViewController {
     
-    var todoList:[Todo] = []
+    private var todoList:[Todo] = []
+    
+    public var selectedTodo: Todo?
 
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    
+    
+    @IBAction func addTodo(_ sender: Any) {
+        self.selectedTodo = nil
+        self.performSegue(withIdentifier: "taskForm", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.layer.zPosition = 999
@@ -51,8 +59,13 @@ class TodoListController: UIViewController {
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! AddTaskController
-        vc.delegate = self
+        
+        if segue.identifier == "taskForm" {
+            let vc = segue.destination as! AddTaskController
+            vc.delegate = self
+            vc.todo = selectedTodo
+        }
+        
     }
 
 }
@@ -101,18 +114,10 @@ extension TodoListController: UITableViewDataSource, UITableViewDelegate{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedTodo = todoList[indexPath.row]
+        self.performSegue(withIdentifier: "taskForm", sender: self)
+    }
     
 }
 
-extension String {
-    func toBool() -> Bool? {
-        switch self {
-        case "True", "true", "yes", "1":
-            return true
-        case "False", "false", "no", "0":
-            return false
-        default:
-            return nil
-        }
-    }
-}

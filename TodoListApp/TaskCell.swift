@@ -11,6 +11,7 @@ import UIKit
 protocol TaskComplete {
     
     func taskComplete(idx index:Int)
+
 }
 
 class TaskCell: UITableViewCell {
