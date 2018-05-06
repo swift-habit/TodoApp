@@ -24,6 +24,7 @@ class AddTaskController: UIViewController {
         let todo = PFObject(className:"todo")
         todo["title"] = taskTitle.text
         todo["description"] = taskDescription.text
+        todo["completed"] = false
         todo.saveInBackground { ( success: Bool, error:Error?) in
             if ( success ){
                 self.taskTitle.text = ""

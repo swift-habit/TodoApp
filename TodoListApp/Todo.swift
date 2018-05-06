@@ -8,7 +8,9 @@
 
 import Foundation
 
+
 struct Todo {
+    var objectId = ""
     var title = ""
     var description = ""
     var completed = false

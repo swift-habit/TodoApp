@@ -8,11 +8,24 @@
 
 import UIKit
 
+protocol TaskComplete {
+    
+    func taskComplete(idx index:Int)
+}
+
 class TaskCell: UITableViewCell {
+    
+    var delegate:TaskComplete?
+    
+    public var index = -1
 
     @IBOutlet weak var checkButton: UIButton!
     
     @IBOutlet weak var taskTitleLabel: UILabel!
+    
+    @IBAction func taskCompleteAction(_ sender: Any) {
+        delegate?.taskComplete(idx:self.index);
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -13,9 +13,11 @@ class TodoListController: UIViewController {
     var todoList:[Todo] = []
 
 
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        activityIndicator.layer.zPosition = 999
 //        todoList.append(Todo(title:"test",description:"wefwefwe",completed:false))
         loadTodoList()
         // Do any additional setup after loading the view, typically from a nib.
@@ -28,13 +30,19 @@ class TodoListController: UIViewController {
 
     func loadTodoList() {
         let todo = PFQuery(className:"todo")
-        
+        activityIndicator.startAnimating()
         todo.findObjectsInBackground {
             (todos:[PFObject]?, error:Error?) -> Void in
+            self.activityIndicator.stopAnimating()
             if let todos = todos {
                 self.todoList.removeAll()
                 for temp in todos {
-                    self.todoList.append(Todo(title: temp["title"] as! String, description: temp["description"] as! String, completed: false))
+                    self.todoList.append(
+                        Todo(objectId: temp.objectId! ,
+                             title: temp["title"] as! String,
+                             description: temp["description"] as! String,
+                             completed: temp["completed"] as! Int == 1 )
+                    )
                 }
                 self.tableView.reloadData()
             } else {
@@ -49,9 +57,26 @@ class TodoListController: UIViewController {
 
 }
 
-extension TodoListController: AddTask {
+extension TodoListController: AddTask, TaskComplete {
     func addTask() {
         loadTodoList()
+    }
+    
+    func taskComplete(idx index: Int) {
+        let todo = todoList[index]
+        let pfTodo = PFObject(className: "todo")
+        pfTodo.objectId = todo.objectId
+        pfTodo["title"]    = todo.title
+        pfTodo["description"] = todo.description
+        pfTodo["completed"]   = !todo.completed
+        pfTodo.saveInBackground {
+            ( success: Bool, error:Error?) in
+            if error == nil {
+                self.loadTodoList()
+            } else {
+                
+            }
+        }
     }
 }
 
@@ -65,7 +90,8 @@ extension TodoListController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskCell
         cell.taskTitleLabel.text = todoList[indexPath.row].title
-        
+        cell.delegate = self
+        cell.index = indexPath.row
         if todoList[indexPath.row].completed {
             cell.checkButton.setBackgroundImage(#imageLiteral(resourceName: "checked"), for: .normal)
         } else {
@@ -76,4 +102,17 @@ extension TodoListController: UITableViewDataSource, UITableViewDelegate{
     }
     
     
+}
+
+extension String {
+    func toBool() -> Bool? {
+        switch self {
+        case "True", "true", "yes", "1":
+            return true
+        case "False", "false", "no", "0":
+            return false
+        default:
+            return nil
+        }
+    }
 }
