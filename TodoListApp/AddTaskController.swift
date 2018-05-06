@@ -23,6 +23,7 @@ class AddTaskController: UIViewController {
     @IBOutlet weak var taskDescription: UITextView!
     @IBOutlet weak var taskCompleted: UISwitch!
     @IBOutlet weak var taskDeleteButton: UIButton!
+    @IBOutlet weak var textView: UITextView!
     
     @IBAction func addTaskAction(_ sender: UIButton) {
         if let pfTodo = pfTodo {
@@ -56,6 +57,10 @@ class AddTaskController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.textView.layer.borderColor = UIColor.gray.cgColor
+        self.textView.layer.borderWidth = 1
+        self.textView.layer.cornerRadius = 5
+        
         pfTodo = PFObject(className:"todo")
         if let todo = self.todo {
             taskTitle.text = todo.title

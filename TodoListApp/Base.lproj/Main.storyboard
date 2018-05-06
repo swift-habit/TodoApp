@@ -167,6 +167,7 @@
                         <outlet property="taskDeleteButton" destination="b86-aa-vzu" id="I0j-yr-h04"/>
                         <outlet property="taskDescription" destination="KrM-5I-moU" id="ogd-Sd-HKG"/>
                         <outlet property="taskTitle" destination="UYa-uA-qFd" id="9o5-Rz-WAa"/>
+                        <outlet property="textView" destination="KrM-5I-moU" id="1Ey-Bx-hEB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ipW-iC-L2n" userLabel="First Responder" sceneMemberID="firstResponder"/>
