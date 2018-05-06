@@ -70,8 +70,8 @@ class TodoListController: UIViewController {
 
 }
 
-extension TodoListController: AddTask, TaskComplete {
-    func addTask() {
+extension TodoListController: TaskAction, TaskComplete {
+    func reloadData() {
         loadTodoList()
     }
     

@@ -9,19 +9,20 @@
 import UIKit
 import Parse
 
-protocol AddTask {
-    func addTask()
+protocol TaskAction{
+    func reloadData()
 }
 
 class AddTaskController: UIViewController {
 
-    var delegate: AddTask?
+    var delegate: TaskAction?
     var todo: Todo?
     var pfTodo: PFObject?
     
     @IBOutlet weak var taskTitle: UITextField!
     @IBOutlet weak var taskDescription: UITextView!
     @IBOutlet weak var taskCompleted: UISwitch!
+    @IBOutlet weak var taskDeleteButton: UIButton!
     
     @IBAction func addTaskAction(_ sender: UIButton) {
         if let pfTodo = pfTodo {
@@ -32,7 +33,7 @@ class AddTaskController: UIViewController {
                 if ( success ){
                     self.taskTitle.text = ""
                     self.taskDescription.text = ""
-                    self.delegate?.addTask()
+                    self.delegate?.reloadData()
                     self.navigationController?.popViewController(animated: true)
                     print("success")
                 } else {
@@ -43,6 +44,15 @@ class AddTaskController: UIViewController {
     }
     
     
+    @IBAction func deleteTaskAction(_ sender: Any) {
+        pfTodo?.deleteInBackground {
+            ( success : Bool, error:Error? ) in
+            if ( success ) {
+                self.delegate?.reloadData()
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +62,9 @@ class AddTaskController: UIViewController {
             taskDescription.text = todo.description
             taskCompleted.setOn(todo.completed,animated: true)
             pfTodo!.objectId = todo.objectId
+            taskDeleteButton.isHidden = false
+        } else {
+            taskDeleteButton.isHidden = true
         }
 
         // Do any additional setup after loading the view.
