@@ -26,6 +26,7 @@ class TodoListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.layer.zPosition = 999
+        activityIndicator.color = UIColor.blue
 //        todoList.append(Todo(title:"test",description:"wefwefwe",completed:false))
         loadTodoList()
         // Do any additional setup after loading the view, typically from a nib.
@@ -61,7 +62,7 @@ class TodoListController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "taskForm" {
-            let vc = segue.destination as! AddTaskController
+            let vc = segue.destination as! TaskFormController
             vc.delegate = self
             vc.todo = selectedTodo
         }
