@@ -13,7 +13,7 @@ protocol TaskAction{
     func reloadData()
 }
 
-class AddTaskController: UIViewController {
+class TaskFormController: UIViewController {
 
     var delegate: TaskAction?
     var todo: Todo?
@@ -46,13 +46,27 @@ class AddTaskController: UIViewController {
     
     
     @IBAction func deleteTaskAction(_ sender: Any) {
-        pfTodo?.deleteInBackground {
-            ( success : Bool, error:Error? ) in
-            if ( success ) {
-                self.delegate?.reloadData()
-                self.navigationController?.popViewController(animated: true)
+        
+        let alertController = UIAlertController(title: "할 일을 삭제하시겠습니까？",message: "삭제하게 되면 복구가 불가능합니다.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        //UIAlertActionStye.destructive 지정 글꼴 색상 변경
+        let okAction = UIAlertAction(title: "삭제", style: UIAlertActionStyle.destructive){ (action: UIAlertAction) in
+            self.pfTodo?.deleteInBackground {
+                ( success : Bool, error:Error? ) in
+                if ( success ) {
+                    self.delegate?.reloadData()
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }
+        
+        let cancelButton = UIAlertAction(title: "취소", style: UIAlertActionStyle.cancel, handler: nil)
+        
+        alertController.addAction(okAction)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController,animated: true,completion: nil)
+       
     }
     
     override func viewDidLoad() {
