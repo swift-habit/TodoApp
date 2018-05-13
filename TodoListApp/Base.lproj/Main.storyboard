@@ -89,10 +89,10 @@
             </objects>
             <point key="canvasLocation" x="972" y="33.733133433283363"/>
         </scene>
-        <!--View Controller-->
+        <!--Login Controller-->
         <scene sceneID="W6q-WO-fWz">
             <objects>
-                <viewController id="4DD-bN-diN" sceneMemberID="viewController">
+                <viewController id="4DD-bN-diN" customClass="LoginController" customModule="TodoListApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RKt-Wu-i2e">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +113,7 @@
                                 <rect key="frame" x="16" y="194" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gab-1P-dOP">
                                 <rect key="frame" x="16" y="249" width="343" height="30"/>
@@ -121,6 +121,9 @@
                                 <state key="normal" title="로그인">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginAction:" destination="4DD-bN-diN" eventType="touchUpInside" id="j4L-cQ-sG2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iGl-Fj-ynI">
                                 <rect key="frame" x="16" y="294" width="343" height="30"/>
@@ -130,10 +133,16 @@
                                     <segue destination="OEk-fb-ZfC" kind="show" id="GQP-Kj-Ngk"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="GtD-Et-sBu">
+                                <rect key="frame" x="169" y="315.5" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="GtD-Et-sBu" firstAttribute="centerY" secondItem="RKt-Wu-i2e" secondAttribute="centerY" id="0ml-5m-Qap"/>
                             <constraint firstItem="avP-PZ-PHL" firstAttribute="top" secondItem="r7H-y2-Xdv" secondAttribute="bottom" constant="23" id="8Dc-I8-H1s"/>
+                            <constraint firstItem="GtD-Et-sBu" firstAttribute="centerX" secondItem="RKt-Wu-i2e" secondAttribute="centerX" id="Q3L-MJ-dlR"/>
                             <constraint firstItem="avP-PZ-PHL" firstAttribute="trailing" secondItem="a3B-JE-JjV" secondAttribute="trailing" id="Tnt-kJ-GJI"/>
                             <constraint firstItem="r7H-y2-Xdv" firstAttribute="leading" secondItem="avP-PZ-PHL" secondAttribute="leading" id="aM0-en-kXj"/>
                             <constraint firstItem="avP-PZ-PHL" firstAttribute="trailing" secondItem="RKt-Wu-i2e" secondAttribute="trailingMargin" id="cRb-7d-eCw"/>
@@ -148,17 +157,20 @@
                         <viewLayoutGuide key="safeArea" id="bF6-zE-GwR"/>
                     </view>
                     <connections>
-                        <segue destination="xHG-3s-dfG" kind="show" id="l4v-kt-Hyo"/>
+                        <outlet property="activityIndicator" destination="GtD-Et-sBu" id="sum-3P-3jj"/>
+                        <outlet property="idTextField" destination="avP-PZ-PHL" id="ndv-fY-1FU"/>
+                        <outlet property="pwTextField" destination="a3B-JE-JjV" id="j7C-5w-tD9"/>
+                        <segue destination="xHG-3s-dfG" kind="show" identifier="mainSegue" id="l4v-kt-Hyo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6n0-qX-XEa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-791.20000000000005" y="33.733133433283363"/>
         </scene>
-        <!--View Controller-->
+        <!--Signup Controller-->
         <scene sceneID="oOk-Pn-0E9">
             <objects>
-                <viewController id="OEk-fb-ZfC" sceneMemberID="viewController">
+                <viewController id="OEk-fb-ZfC" customClass="SignupController" customModule="TodoListApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vJh-X3-9QJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -179,13 +191,13 @@
                                 <rect key="frame" x="16" y="210" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="비밀번호를 한번 더 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HIj-73-vOi">
                                 <rect key="frame" x="16" y="254" width="343" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxK-b0-K1s">
                                 <rect key="frame" x="16" y="305" width="343" height="30"/>
@@ -193,14 +205,33 @@
                                 <state key="normal" title="회원가입">
                                     <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="signupAction:" destination="OEk-fb-ZfC" eventType="touchUpInside" id="9yE-7F-k4t"/>
+                                </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIA-E5-5Rt">
+                                <rect key="frame" x="313" y="20" width="46" height="30"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="backLogin:" destination="OEk-fb-ZfC" eventType="touchUpInside" id="MNk-Mz-lKt"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="KXz-cM-RgQ">
+                                <rect key="frame" x="169" y="315.5" width="37" height="37"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="HxK-b0-K1s" firstAttribute="top" secondItem="HIj-73-vOi" secondAttribute="bottom" constant="21" id="0Tw-uL-nBh"/>
                             <constraint firstItem="HIj-73-vOi" firstAttribute="top" secondItem="x7c-vq-PSB" secondAttribute="bottom" constant="14" id="3yV-Pn-1mn"/>
+                            <constraint firstItem="KXz-cM-RgQ" firstAttribute="centerY" secondItem="vJh-X3-9QJ" secondAttribute="centerY" id="5cJ-yB-wvG"/>
                             <constraint firstItem="nIL-gq-prZ" firstAttribute="trailing" secondItem="x7c-vq-PSB" secondAttribute="trailing" id="AiS-pG-yug"/>
+                            <constraint firstItem="kIA-E5-5Rt" firstAttribute="top" secondItem="WI3-ck-cH5" secondAttribute="top" id="Rqo-jl-c5p"/>
                             <constraint firstItem="HIj-73-vOi" firstAttribute="leading" secondItem="HxK-b0-K1s" secondAttribute="leading" id="Rsz-PP-agY"/>
+                            <constraint firstItem="KXz-cM-RgQ" firstAttribute="centerX" secondItem="vJh-X3-9QJ" secondAttribute="centerX" id="Ta2-Wd-7z3"/>
+                            <constraint firstItem="WI3-ck-cH5" firstAttribute="trailing" secondItem="kIA-E5-5Rt" secondAttribute="trailing" constant="16" id="USw-Zx-p6f"/>
                             <constraint firstItem="nIL-gq-prZ" firstAttribute="trailing" secondItem="vJh-X3-9QJ" secondAttribute="trailingMargin" id="Wfk-9f-D4z"/>
                             <constraint firstItem="jTw-f1-UDf" firstAttribute="leading" secondItem="nIL-gq-prZ" secondAttribute="leading" id="c8d-bA-XLE"/>
                             <constraint firstItem="jTw-f1-UDf" firstAttribute="top" secondItem="WI3-ck-cH5" secondAttribute="top" constant="73" id="cew-Es-PME"/>
@@ -214,6 +245,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="WI3-ck-cH5"/>
                     </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="KXz-cM-RgQ" id="RrZ-cN-8k3"/>
+                        <outlet property="cancelButton" destination="kIA-E5-5Rt" id="baa-7p-deI"/>
+                        <outlet property="idTextField" destination="nIL-gq-prZ" id="g9a-T7-UtE"/>
+                        <outlet property="pwConfirmTextField" destination="HIj-73-vOi" id="BvW-ch-CUB"/>
+                        <outlet property="pwTextField" destination="x7c-vq-PSB" id="E4D-E6-Bip"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HUG-cg-qkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
