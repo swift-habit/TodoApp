@@ -7,5 +7,6 @@ target 'TodoListApp' do
 
   # Pods for TodoListApp
   pod 'Parse'
+  pod 'FontAwesome.swift'
 
 end
