@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		160157CB20A7E4BA001FA84F /* UtilExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 160157CA20A7E4BA001FA84F /* UtilExtension.swift */; };
 		1611EA26209E114900797697 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 1611EA25209E114800797697 /* .gitignore */; };
 		1611EA28209E136800797697 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611EA27209E136800797697 /* Todo.swift */; };
-		1611EA2A209E16D300797697 /* AddTaskController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611EA29209E16D300797697 /* AddTaskController.swift */; };
+		1611EA2A209E16D300797697 /* TaskFormController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611EA29209E16D300797697 /* TaskFormController.swift */; };
 		1611EA2C209E97BC00797697 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1611EA2B209E97BC00797697 /* README.md */; };
+		1611EA2E209EB9E400797697 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611EA2D209EB9E400797697 /* LoginController.swift */; };
+		1611EA30209EBB7E00797697 /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1611EA2F209EBB7E00797697 /* SignupController.swift */; };
 		166033116DB9A87F6AB8AFCB /* Pods_TodoListApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 588BECFE8FE0D9BEC6BC7BC1 /* Pods_TodoListApp.framework */; };
 		1684A7FD2095B27C0017D35B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1684A7FC2095B27C0017D35B /* AppDelegate.swift */; };
 		1684A7FF2095B27C0017D35B /* TodoListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1684A7FE2095B27C0017D35B /* TodoListController.swift */; };
@@ -22,10 +25,13 @@
 
 /* Begin PBXFileReference section */
 		153E483607CEC5F9390C26A1 /* Pods-TodoListApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodoListApp/Pods-TodoListApp.release.xcconfig"; sourceTree = "<group>"; };
+		160157CA20A7E4BA001FA84F /* UtilExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilExtension.swift; sourceTree = "<group>"; };
 		1611EA25209E114800797697 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		1611EA27209E136800797697 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
-		1611EA29209E16D300797697 /* AddTaskController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskController.swift; sourceTree = "<group>"; };
+		1611EA29209E16D300797697 /* TaskFormController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFormController.swift; sourceTree = "<group>"; };
 		1611EA2B209E97BC00797697 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		1611EA2D209EB9E400797697 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		1611EA2F209EBB7E00797697 /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		1684A7F92095B27C0017D35B /* TodoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1684A7FC2095B27C0017D35B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1684A7FE2095B27C0017D35B /* TodoListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListController.swift; sourceTree = "<group>"; };
@@ -80,7 +86,10 @@
 				1684A8082095B27D0017D35B /* Info.plist */,
 				1684A80F2095B4330017D35B /* TaskCell.swift */,
 				1611EA27209E136800797697 /* Todo.swift */,
-				1611EA29209E16D300797697 /* AddTaskController.swift */,
+				1611EA29209E16D300797697 /* TaskFormController.swift */,
+				1611EA2D209EB9E400797697 /* LoginController.swift */,
+				1611EA2F209EBB7E00797697 /* SignupController.swift */,
+				160157CA20A7E4BA001FA84F /* UtilExtension.swift */,
 			);
 			path = TodoListApp;
 			sourceTree = "<group>";
@@ -224,11 +233,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TodoListApp/Pods-TodoListApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FontAwesome.swift/FontAwesome_swift.framework",
 				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FontAwesome_swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,7 +255,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1611EA28209E136800797697 /* Todo.swift in Sources */,
-				1611EA2A209E16D300797697 /* AddTaskController.swift in Sources */,
+				160157CB20A7E4BA001FA84F /* UtilExtension.swift in Sources */,
+				1611EA2E209EB9E400797697 /* LoginController.swift in Sources */,
+				1611EA30209EBB7E00797697 /* SignupController.swift in Sources */,
+				1611EA2A209E16D300797697 /* TaskFormController.swift in Sources */,
 				1684A7FF2095B27C0017D35B /* TodoListController.swift in Sources */,
 				1684A8102095B4330017D35B /* TaskCell.swift in Sources */,
 				1684A7FD2095B27C0017D35B /* AppDelegate.swift in Sources */,

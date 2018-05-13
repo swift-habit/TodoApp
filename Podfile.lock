@@ -1,17 +1,20 @@
 PODS:
   - Bolts/Tasks (1.9.0)
+  - FontAwesome.swift (1.3.2)
   - Parse (1.16.0):
     - Parse/Core (= 1.16.0)
   - Parse/Core (1.16.0):
     - Bolts/Tasks (~> 1.9)
 
 DEPENDENCIES:
+  - FontAwesome.swift
   - Parse
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  FontAwesome.swift: b4e4c8ccbbecb12f9b592bc533ff237af3706667
   Parse: 5b36dc2c2f0a2fd82a257ae018bc3d68cf2c24e7
 
-PODFILE CHECKSUM: e581d3d5511cfa6c57d246465610cef991f1a8c5
+PODFILE CHECKSUM: 8b46dbab95dc4e7d56dc542488d8a8e382411596
 
 COCOAPODS: 1.4.0
